@@ -74,25 +74,19 @@ class KDtree(object):
                 else:
                     node.father.right=None
                 del node    #销毁node节点
-        #elif node.left is None:
-        #跳过左节点为空的情况，因为左为空、右一定为空。
-
-        elif node.right is None:
+        elif node.right is None:    #仅有左子树
             if node.father.left==node:
-                node.left.father=node.father
+                node.father.left=node.left
             else:
                 node.father.right=node.left
-
             #把待删除点node的father链接到node的左节点上
             node.left.father=node.father
             del node
-
-        elif node.left is None:
+        elif node.left is None: #仅有右子树
             if node.father.left==node:
                 node.father.left=node.right
             else:
                 node.father.right=node.right
-
             #把待删除点node的father链接到node的右节点上
             node.right.father=node.father
             del node
@@ -104,9 +98,9 @@ class KDtree(object):
             lis_cut_dim=[nd.item[cut_dim] for nd in lis_node]   #左子树所有节点的cut_dim维特征比较
             max_index=lis_cut_dim.index(max(lis_cut_dim))   #定位最大那个节点所在位置
             tnode=lis_node[max_index]   #用它替代待删除的节点
+            #这两步变相于把node删除了。
             node.item=tnode.item
             node.label=tnode.label
-            del node
             self.find_del(tnode)    #tnode替代了他的位置，就相当它从原位置被删除了，所以继续进行find_del
 
     def delete(self, target):
@@ -131,7 +125,6 @@ class KDtree(object):
                 #选取方差最大的特征作为切分平面
                 vars=[np.var(X[:,col]) for col in range(n)]
                 max_index=vars.index(max(vars)) #方差最大特征对应列数
-
             node.divided_dimension=max_index
             if node.item[max_index]>target.item[max_index]:
                 node.left=target
