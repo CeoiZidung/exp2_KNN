@@ -141,7 +141,7 @@ class KDtree(object):
         elif self.dis_mes=='1': #曼哈顿距离
             op=np.sum(np.abs(vector1-vector2))
         else:   #self.dis_mes=inf
-            op=np.max(np.abs(vector1-vector2))
+            op3=np.max(np.abs(vector1-vector2))
 
         return op
 

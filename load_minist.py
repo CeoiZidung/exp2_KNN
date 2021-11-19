@@ -25,7 +25,4 @@ def load_minist(data_folder):
         x_test = np.frombuffer(
             imgpath.read(), np.uint8, offset=16).reshape(len(y_test), 28, 28)
 
-    #将28*28数据拉成784*1维
-    x_train=x_train.reshape(60000,784)
-    x_test=x_test.reshape(10000,784)
     return (x_train, y_train), (x_test, y_test)
