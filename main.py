@@ -9,8 +9,8 @@ import argparse
 if __name__=='__main__':
     #添加命令行指令
     parser = argparse.ArgumentParser(description='KNN_project')
-    parser.add_argument('--trn', default=20, type=int, help='train num')
-    parser.add_argument('--ten', default=10, type=int, help='test num')
+    parser.add_argument('--trn', default=2000, type=int, help='train num')
+    parser.add_argument('--ten', default=1000, type=int, help='test num')
     parser.add_argument('--feaSec', default='index', type=str, help='feather select ways: index or var')
     parser.add_argument('--disMes', default='inf', type=str, help='distance messure: 1 or 2 or inf')
     parser.add_argument('--pca', action="store_true", default=False, help='PCA or not？')  #是否进行PCA降维
