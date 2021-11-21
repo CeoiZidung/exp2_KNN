@@ -19,7 +19,7 @@ if __name__=='__main__':
 
     #加载数据
     (train_data, train_labels), (test_data, test_labels) = load_minist('./data')
-    # print ("mnist data loaded!")
+    print ("mnist data loaded!")
 
 
     if args.pca:    #使用PCA降维
